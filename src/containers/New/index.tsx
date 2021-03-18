@@ -42,11 +42,17 @@ const New = () => {
       >
         <FormShared
           onSubmit={(values: any) => {
-            axios.post(`http://localhost:3001/leads`, values).then((res) => {
-              if (res.statusText === "Created") {
-                history.push("/");
-              }
-            });
+            axios
+              .post(
+                `https://my-json-server.typicode.com/EliasSartori/test-acerta-api-fake/leads`,
+                values
+              )
+              .then((res) => {
+                console.warn(res);
+                if (res.status === 201) {
+                  history.push("/");
+                }
+              });
           }}
         />
       </Row>

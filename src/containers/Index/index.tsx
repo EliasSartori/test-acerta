@@ -14,7 +14,7 @@ import {
 import { Formik, Field, Form } from "formik";
 import logo from "../../logo.svg";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 import { AiFillEdit, AiTwotoneDelete } from "react-icons/ai";
 
@@ -60,9 +60,13 @@ const Index = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/leads`).then((res) => {
-      setData(res.data);
-    });
+    axios
+      .get(
+        `https://my-json-server.typicode.com/EliasSartori/test-acerta-api-fake/leads`
+      )
+      .then((res) => {
+        setData(res.data);
+      });
   }, []);
 
   return (
@@ -208,12 +212,18 @@ const Index = () => {
                   onConfirm={() =>
                     axios
                       .delete(
-                        `http://localhost:3001/leads/${_.get(record, "id", 0)}`
+                        `https://my-json-server.typicode.com/EliasSartori/test-acerta-api-fake/leads/${_.get(
+                          record,
+                          "id",
+                          0
+                        )}`
                       )
                       .then((res) => {
                         if (res.statusText === "OK") {
                           axios
-                            .get(`http://localhost:3001/leads`)
+                            .get(
+                              `https://my-json-server.typicode.com/EliasSartori/test-acerta-api-fake/leads`
+                            )
                             .then((res) => {
                               setData(res.data);
                             });

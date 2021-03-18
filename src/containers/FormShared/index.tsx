@@ -24,9 +24,13 @@ const FormShared = ({ onSubmit, defaultValues }: PropTypes) => {
   const [dataSelect, setDataSelect] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/tiposEstadoCivil`).then((res) => {
-      setDataSelect(res.data);
-    });
+    axios
+      .get(
+        `https://my-json-server.typicode.com/EliasSartori/test-acerta-api-fake/tiposEstadoCivil`
+      )
+      .then((res) => {
+        setDataSelect(res.data);
+      });
   }, []);
 
   return (

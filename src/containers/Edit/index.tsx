@@ -15,9 +15,13 @@ const Edit = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/leads/${id}`).then((res) => {
-      setData(res.data);
-    });
+    axios
+      .get(
+        `https://my-json-server.typicode.com/EliasSartori/test-acerta-api-fake/leads/${id}`
+      )
+      .then((res) => {
+        setData(res.data);
+      });
   }, [id]);
 
   if (_.isEmpty(data)) {
@@ -57,9 +61,14 @@ const Edit = () => {
           defaultValues={data}
           onSubmit={(values: any) => {
             axios
-              .put(`http://localhost:3001/leads/${id}`, values)
+              .put(
+                `https://my-json-server.typicode.com/EliasSartori/test-acerta-api-fake/leads/${id}`,
+                values
+              )
               .then((res) => {
-                if (res.statusText === "OK") {
+                console.warn(res);
+
+                if (res.status === 200) {
                   history.push("/");
                 }
               });
